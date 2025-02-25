@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abitha Mathy - System Administrator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#fdf4ff',
+                            100: '#fae8ff',
+                            200: '#f5d0fe',
+                            300: '#f0abfc',
+                            400: '#e879f9',
+                            500: '#d946ef',
+                            600: '#c026d3',
+                            700: '#a21caf',
+                            800: '#86198f',
+                            900: '#701a75',
+                        },
+                    },
+                    animation: {
+                        'gradient-x': 'gradient-x 15s ease infinite',
+                        'gradient-y': 'gradient-y 15s ease infinite',
+                        'gradient-xy': 'gradient-xy 15s ease infinite',
+                    },
+                    keyframes: {
+                        'gradient-y': {
+                            '0%, 100%': {
+                                'background-size': '400% 400%',
+                                'background-position': 'center top'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'center center'
+                            }
+                        },
+                        'gradient-x': {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            }
+                        },
+                        'gradient-xy': {
+                            '0%, 100%': {
+                                'background-size': '400% 400%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            }
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="font-sans bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-200 transition-colors duration-300" x-data="{ darkMode: false }" :class="{ 'dark': darkMode }">
+    <div class="relative">
+        <!-- Header -->
+        <header class="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-80 dark:bg-gray-800 dark:bg-opacity-80 backdrop-filter backdrop-blur-lg shadow-md transition-colors duration-300">
+            <nav class="container mx-auto px-6 py-3" x-data="{ isOpen: false }">
+                <div class="flex items-center justify-between">
+                    <div class="text-2xl font-bold text-primary-600 dark:text-primary-400">AM</div>
+                    <div class="hidden md:flex space-x-6 dark:text-white">
+                        <a href="#home" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Home</a>
+                        <a href="#experience" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Experience</a>
+                        <a href="#education" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Education</a>
+                        <a href="#skills" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Skills</a>
+                        <a href="#contact" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Contact</a>
+                    </div>
+                    <button @click="darkMode = !darkMode" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors duration-300">
+                        <svg x-show="!darkMode" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                        <svg x-show="darkMode" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                    </button>
+                    <button @click="isOpen = !isOpen" class="md:hidden focus:outline-none">
+                        <svg x-show="!isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg x-show="isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div x-show="isOpen" class="mt-4 md:hidden">
+                    <a href="#home" class="block py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Home</a>
+                    <a href="#experience" class="block py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Experience</a>
+                    <a href="#education" class="block py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Education</a>
+                    <a href="#skills" class="block py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Skills</a>
+                    <a href="#contact" class="block py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300">Contact</a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-6 py-20">
+            <!-- Hero Section -->
+            <section id="home" class="min-h-screen flex items-center justify-center">
+                <div class="text-center">
+                    <h1 class="text-6xl font-bold mb-4 text-primary-600 dark:text-primary-400 animate-fade-in">Abitha Mathy</h1>
+                    <h2 class="text-3xl mb-6 text-secondary-600 dark:text-secondary-400"><span id="typed"></span></h2>
+                    <div class="flex justify-center space-x-4 mb-8">
+                        <a href="https://www.linkedin.com/in/abitha-mathy/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:abithaabi1322003@gmail.com" class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 transition-colors duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </a>
+                        <a href="tel:+917639906187" class="text-green-600 hover:text-green-800 dark:text-green-400 dark:hover:text-green-300 transition-colors duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                        </a>
+                    </div>
+                    <a href="#experience" class="inline-block bg-primary-600 text-white px-6 py-3 rounded-full hover:bg-primary-700 transition-colors duration-300 animate-bounce">View My Work</a>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="experience" class="py-20">
+                <h2 class="text-4xl font-bold mb-10 text-center text-primary-600 dark:text-primary-400">Experience</h2>
+                <div class="space-y-12 ">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl transform hover:-translate-y-2 card-hover">
+                        <h3 class="text-2xl font-semibold mb-2 text-primary-600 dark:text-primary-400">System Administrator</h3>
+                        <h4 class="text-xl mb-2 text-secondary-600 dark:text-secondary-400">Velammal Bodhi Campus</h4>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">April 2024 - Present</p>
+                        <ul class="list-disc list-inside dark:text-gray-400 space-y-2">
+                            <li>Maintaining and troubleshooting over 200+ systems and institutional servers.</li>
+                            <li>Configuring, installing, and maintaining OMR and VCR devices for automated processing.</li>
+                            <li>Managing and troubleshooting network infrastructure, including structured cabling installation and switch configurations.</li>
+                            <li>Configuring and maintaining DHCP servers, IP assignments, and ensuring seamless network connectivity.</li>
+                            <li>Administering security measures, including firewall configurations and access control policies.</li>
+                            <li>Providing technical support for faculty and staff by resolving hardware, software, and email-related issues.</li>
+                            <li>Implementing system upgrades and software patches to ensure optimal performance and security compliance.</li>
+                            <li>Training staff on basic troubleshooting and system usage to reduce dependency on IT support.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl transform hover:-translate-y-2 card-hover">
+                        <h3 class="text-2xl font-semibold mb-2 text-primary-600 dark:text-primary-400">Intern</h3>
+                        <h4 class="text-xl mb-2 text-secondary-600 dark:text-secondary-400">Daphne Infotech</h4>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">June 2023 - December 2023</p>
+                        <ul class="list-disc list-inside dark:text-gray-400  space-y-2">
+                            <li>Gained hands-on experience in computer hardware, networking, CCNA, RedHat Linux, and Windows Server administration.</li>
+                            <li>Assisted in installing, configuring, and maintaining Windows and Linux server environments.</li>
+                            <li>Configured and troubleshot network issues, including VLAN setups and basic security policies.</li>
+                            <li>Worked on Microsoft Outlook configuration, email server maintenance, and virtual machine management using VMware.</li>
+                            <li>Supported senior administrators in maintaining and monitoring IT infrastructure.</li>
+                            <li>Conducted basic troubleshooting for network and desktop-related issues, providing first-level support to users.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section id="education" class="py-20">
+                <h2 class="text-4xl font-bold mb-10 text-center text-primary-600 dark:text-primary-400">Education</h2>
+                <div class="space-y-8">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl transform hover:-translate-y-2 card-hover">
+                        <h3 class="text-2xl font-semibold mb-2 text-primary-600 dark:text-primary-400">B.Com</h3>
+                        <h4 class="text-xl mb-2 text-secondary-600 dark:text-secondary-400">GTN Arts & Science College, Dindigul</h4>
+                        <p class="text-gray-600 dark:text-gray-400">2023 | 83%</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl transform hover:-translate-y-2 card-hover">
+                        <h3 class="text-2xl font-semibold mb-2 text-primary-600 dark:text-primary-400">HSC</h3>
+                        <h4 class="text-xl mb-2 text-secondary-600 dark:text-secondary-400">Sri Vasavi Matriculation Higher Secondary School, Dindigul</h4>
+                        <p class="text-gray-600 dark:text-gray-400">2020 | 56.5%</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl transform hover:-translate-y-2 card-hover">
+                        <h3 class="text-2xl font-semibold mb-2 text-primary-600 dark:text-primary-400">SSLC</h3>
+                        <h4 class="text-xl mb-2 text-secondary-600 dark:text-secondary-400">Sri Vasavi Matriculation Higher Secondary School, Dindigul</h4>
+                        <p class="text-gray-600 dark:text-gray-400">2018 | 76.5%</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="py-20">
+                <h2 class="text-4xl font-bold mb-10 text-center text-primary-600 dark:text-primary-400">Skills</h2>
+                <div class="grid grid-cols-1 dark:text-gray-400 md:grid-cols-2 gap-8">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl card-hover">
+                        <h3 class="text-2xl font-semibold mb-4 text-primary-600 dark:text-primary-400">Networking Skills</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>LAN</li>
+                            <li>TCP/IP</li>
+                            <li>Subnetting</li>
+                            <li>Routing Protocols</li>
+                            <li>VLAN</li>
+                            <li>DHCP</li>
+                            <li>Access Control List</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl card-hover">
+                        <h3 class="text-2xl font-semibold mb-4 text-primary-600 dark:text-primary-400">Operating Systems</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Linux (RedHat 8.8)</li>
+                            <li>Windows Server 2012 R2</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl card-hover">
+                        <h3 class="text-2xl font-semibold mb-4 text-primary-600 dark:text-primary-400">Virtualization</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>VMware</li>
+                            <li>Oracle VirtualBox</li>
+                            <li>Hyper-V</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl card-hover">
+                        <h3 class="text-2xl font-semibold mb-4 text-primary-600 dark:text-primary-400">Security</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Firewall Configuration</li>
+                            <li>Active Directory Management</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Certifications Section -->
+            <section id="certifications" class="py-20">
+                <h2 class="text-4xl font-bold mb-10 text-center text-primary-600 dark:text-primary-400">Certifications</h2>
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl card-hover">
+                    <h3 class="text-2xl font-semibold mb-4 text-primary-600 dark:text-primary-400">RedHat 8.8 Certification</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Certified in RedHat Enterprise Linux 8.8 administration and management.</p>
+                </div>
+            </section>
+
+            <!-- Extra Curricular Activities Section -->
+            <section id="extra-curricular" class="py-20">
+                <h2 class="text-4xl font-bold mb-10 text-center text-primary-600 dark:text-primary-400">Extra Curricular Activities</h2>
+                <div class="space-y-6">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl card-hover">
+                        <h3 class="text-2xl font-semibold mb-2 text-primary-600 dark:text-primary-400">PC Hardware and Troubleshooting Workshop</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Attended a workshop on PC Hardware and Troubleshooting at GTN Arts College.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl card-hover">
+                        <h3 class="text-2xl font-semibold mb-2 text-primary-600 dark:text-primary-400">Cyber Forensics & Security Webinar</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Participated in a national-level webinar on Cyber Forensics & Security.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="py-20">
+                <h2 class="text-4xl font-bold mb-10 text-center text-primary-600 dark:text-primary-400">Contact</h2>
+                <div class="bg-white dark:bg-gray-800 dark:text-gray-400 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl card-hover">
+                    <div class="space-y-4">
+                        <p><strong>Email:</strong> abithaabi1322003@gmail.com</p>
+                        <p><strong>Phone:</strong> +91 7639906187</p>
+                        <p><strong>Address:</strong> Medavakkam, Chennai - 600100</p>
+                        <p><strong>Languages:</strong> Tamil, English</p>
+                        <p><strong>Date of Birth:</strong> 13th February 2003</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-200 dark:bg-gray-800 py-6">
+            <div class="container mx-auto px-6 text-center">
+                <p>&copy; 2024 Abitha Mathy. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Typed.js initialization
+        var typed = new Typed('#typed', {
+            strings: ['System Administrator', 'Network Specialist', 'IT Professional'],
+            typeSpeed: 50,
+            backSpeed: 50,
+            loop: true
+        });
+
+        // GSAP ScrollTrigger for animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate sections on scroll
+        gsap.utils.toArray('section').forEach(section => {
+            gsap.from(section, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+
+        // Animate cards on hover
+        gsap.utils.toArray('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, {
+                    scale: 1.05,
+                    duration: 0.3
+                });
+            });
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    scale: 1,
+                    duration: 0.3
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
